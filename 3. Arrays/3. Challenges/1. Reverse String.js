@@ -1,6 +1,12 @@
-// 1. Convert string to array (split method)
-// 2. Reverse the array (reverse method)
-// 3. Convert array back to string (join method)
+function reverseString(str) {
+    let reversedString = "";
 
-const reverseString = (str) => str.split("").reverse().join("");
-console.log(reverseString("hello"));
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversedString += str.charAt(i);
+    }
+
+    return reversedString;
+}
+
+console.log("Hello: ", reverseString("Hello"));
+console.log("Apple: ", reverseString("Apple"));

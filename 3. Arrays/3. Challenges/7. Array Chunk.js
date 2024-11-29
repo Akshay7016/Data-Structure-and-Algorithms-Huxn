@@ -1,16 +1,15 @@
-const chunk = (array, size) => {
-  const chunked = [];
-  let index = 0;
+const createChunkArray = (array, size) => {
+    const chunkedArray = [];
+    let index = 0;
 
-  while (index < array.length) {
-    const chunk = array.slice(index, index + size);
-    // console.log("------------", chunk);
-    chunked.push(chunk);
-    index += size;
-  }
+    while (index < array.length) {
+        // slice returns new array without changing original array
+        const chunk = array.slice(index, index + size);
+        chunkedArray.push(chunk);
+        index += size;
+    }
 
-  return chunked;
-};
+    return chunkedArray;
+}
 
-// console.log(chunk([1, 2, 3, 4, 5], 2));
-console.log(chunk([1, 2, 3, 4, 5, 6, 7, 8], 3));
+console.log(createChunkArray([1, 2, 3, 4, 5, 6, 7, 8], 3))

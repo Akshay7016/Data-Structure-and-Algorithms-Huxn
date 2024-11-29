@@ -28,40 +28,36 @@ class MyArray {
       this.data[i] = this.data[i + 1];
     }
 
-    // Delete the last element (which now contains the original second element)
     delete this.data[this.length - 1];
     this.length--;
-
-    // Return the first item that was removed from the array
     return firstItem;
   }
 
   delete(index) {
-    // Store the item to be removed
     const item = this.data[index];
 
-    // Shift elements after the target element (excluding the last one)
     for (let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }
 
-    // Delete the last element (which now holds the element to be removed)
     delete this.data[this.length - 1];
-
-    // Decrement length
     this.length--;
 
-    // Return the removed item
     return item;
   }
 }
 
-const myNewArray = new MyArray();
-myNewArray.push("one");
-myNewArray.push("two");
-myNewArray.push("three");
-// myNewArray.pop();
-// myNewArray.shift();
-myNewArray.delete(1);
-// console.log(myNewArray.get(0));
-console.log(myNewArray);
+const fruits = new MyArray();
+fruits.push("Mango")
+fruits.push("Apple")
+fruits.push("Orange")
+
+// console.log("Get 0:", fruits.get(0))
+// console.log("Get 2:", fruits.get(2))
+
+// console.log(fruits.pop())
+
+// console.log(fruits.shift())
+
+console.log(fruits.delete(1))
+console.log(fruits)

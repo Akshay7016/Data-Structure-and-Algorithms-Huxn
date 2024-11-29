@@ -1,27 +1,36 @@
-const maxProfit = (prices) => {
-  let minPrice = prices[0]; // Assume the first day is the cheapest to buy
-  let maxProfit = 0;
+// Solution 1
+// function findMaxProfit(prices) {
+//     let maxProfit = 0;
 
-  for (let i = 1; i < prices.length; i++) {
-    const currentPrice = prices[i];
-    // console.log(currentPrice);
+//     for (let i = 0; i < prices.length - 1; i++) {
+//         for (let j = i + 1; j < prices.length; j++) {
+//             const currentProfit = prices[j] - prices[i];
 
-    // Update minimum price if a lower price is found
-    minPrice = Math.min(minPrice, currentPrice);
-    // console.log(minPrice);
+//             if (maxProfit < currentProfit) {
+//                 maxProfit = currentProfit;
+//             }
+//         }
+//     }
 
-    // Calculate potential profit for selling today
-    const potentialProfit = currentPrice - minPrice;
-    // console.log(potentialProfit);
+//     return maxProfit;
+// }
 
-    // Update maxProfit if a higher profit is found
-    maxProfit = Math.max(maxProfit, potentialProfit);
-    // console.log(maxProfit);
-  }
+// Solution 2
+function findMaxProfit(prices) {
+    let minPrice = prices[0]; // Assume the first day is the cheapest to buy
+    let maxProfit = 0;
 
-  return maxProfit;
-};
+    for (let i = 1; i < prices.length; i++) {
+        const currentPrice = prices[i];
 
-const prices = [7, 1, 5, 3, 6, 4];
-const profit = maxProfit(prices);
-console.log("Maximum profit:", profit);
+        minPrice = Math.min(minPrice, currentPrice);
+
+        const potentialValue = currentPrice - minPrice;
+
+        maxProfit = Math.max(maxProfit, potentialValue);
+    }
+
+    return maxProfit;
+}
+
+console.log("Max profit for [7,1,5,3,6,4] is:", findMaxProfit([7, 1, 5, 3, 6, 4]));

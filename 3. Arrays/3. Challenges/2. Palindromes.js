@@ -1,9 +1,15 @@
-// 1. Convert string to array (split method)
-// 2. Reverse the array (reverse method)
-// 3. Convert array back to string (join method)
-// 4. Compare strings
+function isPalindrome(str) {
+    return str === str.split("").reverse().join("");
 
-const palindrome = (str) => str.split("").reverse().join("") === str;
+    // let reversedString = "";
 
-console.log(palindrome("cddc"));
-console.log(palindrome("Hello"));
+    // for (let i = str.length - 1; i >= 0; i--) {
+    //     reversedString += str.charAt(i);
+    // }
+
+    // return str === reversedString;
+}
+
+console.log("abba: ", isPalindrome("abba"))
+console.log("cddc: ", isPalindrome("cddc"));
+console.log("Hello: ", isPalindrome("Hello"));

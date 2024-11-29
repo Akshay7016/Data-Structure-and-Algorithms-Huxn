@@ -1,13 +1,11 @@
-// 1. Convert number to string (toString method)
-// 2. Convert String to array (split method)
-// 3. Reverse the string (reverse method)
-// 4. Convert array back to string (join method)
-// 5. Convert string to number (parseInt method)
-// 6. Return the number
+function reverseInteger(num) {
+  // Solution 2
+  // return parseInt(num.toString().split("").reverse().join(""));
 
-const reverseInt = (n) => {
-  const reversed = n.toString().split("").reverse().join("");
-  return parseInt(reversed) * Math.sign(n);
-};
+  // Solution 2
+  // + is used to convert string to number (if string is numeric)
+  return +num.toString().split("").reverse().join("");
+}
 
-console.log(reverseInt(-123));
+console.log(1234, reverseInteger(1234));
+console.log(453321, reverseInteger(453321));
