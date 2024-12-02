@@ -18,6 +18,7 @@ class LinkedList {
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
+      this.length++;
       return;
     }
 
@@ -59,5 +60,7 @@ console.log(myLinkedList)
 const deletedNode1 = myLinkedList.pop();
 const deletedNode2 = myLinkedList.pop();
 const deletedNode3 = myLinkedList.pop();
+console.log(myLinkedList);
+myLinkedList.push(50)
 console.log(myLinkedList);
 
