@@ -76,14 +76,17 @@ class LinkedList {
     }
 
     const deletedNode = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return deletedNode;
+    }
+
     this.head = this.head.next;
     deletedNode.next = null;
     this.length--;
-
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
 
     return deletedNode;
   }
@@ -174,9 +177,7 @@ class LinkedList {
 
 const myLinkedList = new LinkedList(10);
 myLinkedList.push(20);
-myLinkedList.push(50);
-myLinkedList.push(60);
-myLinkedList.push(70);
-myLinkedList.insert(2, 90);
-myLinkedList.push(100);
-console.log(myLinkedList.print());
+console.log(myLinkedList.shift());
+console.log(myLinkedList);
+console.log(myLinkedList.shift());
+console.log(myLinkedList);
