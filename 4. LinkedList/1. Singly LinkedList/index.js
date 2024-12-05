@@ -30,11 +30,18 @@ class LinkedList {
 
   pop() {
     if (!this.head) {
-      return "No head node found";
+      return "Unable to delete node";
     }
 
     let temp = this.head,
       prev = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return temp;
+    }
 
     while (temp.next) {
       prev = temp;
@@ -44,11 +51,6 @@ class LinkedList {
     this.tail = prev;
     this.tail.next = null;
     this.length--;
-
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
 
     return temp;
   }
