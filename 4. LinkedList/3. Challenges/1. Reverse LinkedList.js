@@ -54,3 +54,4 @@ myLinkedList.push(4);
 myLinkedList.push(5);
 
 console.log(JSON.stringify(myLinkedList.reverse()));
+console.log(JSON.stringify(myLinkedList));
