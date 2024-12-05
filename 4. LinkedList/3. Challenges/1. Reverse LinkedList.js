@@ -1,6 +1,6 @@
 class Node {
   constructor(value) {
-    this.head = value;
+    this.data = value;
     this.next = null;
   }
 }
@@ -13,31 +13,35 @@ class LinkedList {
   }
 
   push(value) {
-    let newNode = new Node(value);
+    const newNode = new Node(value);
 
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
+      this.length++;
+      return this;
     }
 
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
+    return this;
   }
 
   reverse() {
-    let temp = this.head;
-    this.head = this.tail;
-    this.tail = temp;
-    let next = temp;
-    let prev = null;
-
-    for (let i = 0; i < this.length; i++) {
-      next = temp.next;
-      temp.next = prev;
-      prev = temp;
-      temp = next;
+    for (let i = 0; i < this.length - 1; i++) {
+      let temp = this.head;
+      this.head = this.head.next;
+      temp.next = this.tail.next;
+      this.tail.next = temp;
     }
+
+    this.head = this.tail;
+    let temp = this.head;
+    while (temp.next) {
+      temp = temp.next;
+    }
+    this.tail = temp;
 
     return this;
   }
@@ -47,4 +51,6 @@ const myLinkedList = new LinkedList(1);
 myLinkedList.push(2);
 myLinkedList.push(3);
 myLinkedList.push(4);
-console.log(myLinkedList.reverse());
+myLinkedList.push(5);
+
+console.log(JSON.stringify(myLinkedList.reverse()));
