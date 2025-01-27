@@ -7,8 +7,7 @@ class Node {
 
 class Stack {
   constructor(value) {
-    const newNode = new Node(value);
-    this.first = newNode;
+    this.first = new Node(value);
     this.length = 1;
   }
 
@@ -17,12 +16,13 @@ class Stack {
 
     if (this.length === 0) {
       this.first = newNode;
-    } else {
-      newNode.next = this.first;
-      this.first = newNode;
-      this.length++;
-      return this;
+      this.length = 1;
+      return;
     }
+
+    newNode.next = this.first;
+    this.first = newNode;
+    this.length += 1;
   }
 
   pop() {
@@ -32,6 +32,7 @@ class Stack {
 
     let temp = this.first;
     this.first = this.first.next;
+
     temp.next = null;
     this.length--;
     return temp;
@@ -41,12 +42,26 @@ class Stack {
     if (this.length === 0) {
       return undefined;
     }
-    return this.first;
+
+    return this.first.value;
+  }
+
+  view() {
+    let temp = this.first;
+    while (temp) {
+      console.log(temp.value);
+      temp = temp.next;
+    }
   }
 }
 
-let theStack = new Stack(0);
-theStack.push(1);
-theStack.push(2);
-// theStack.pop();
-console.log(theStack);
+const myStack = new Stack(1);
+myStack.push(2);
+myStack.push(3);
+myStack.push(4);
+
+myStack.view();
+console.log(myStack.pop());
+console.log("After pop");
+myStack.view();
+console.log("Top value", myStack.top());
