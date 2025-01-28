@@ -15,15 +15,18 @@ class Queue {
 
   enqueue(value) {
     const newNode = new Node(value);
+
     if (this.length === 0) {
       this.first = newNode;
       this.last = newNode;
+      this.length++;
+      return;
     }
 
     this.last.next = newNode;
     this.last = newNode;
     this.length++;
-    return this;
+    return this.length;
   }
 
   dequeue() {
@@ -31,13 +34,14 @@ class Queue {
       return undefined;
     }
 
-    let temp = this.first;
-
     if (this.length === 1) {
       this.first = null;
       this.last = null;
+      this.length = 0;
+      return;
     }
 
+    let temp = this.first;
     this.first = this.first.next;
     temp.next = null;
     this.length--;
@@ -45,8 +49,10 @@ class Queue {
   }
 }
 
-let myQueue = new Queue(0);
-myQueue.enqueue(1);
+const myQueue = new Queue(1);
 myQueue.enqueue(2);
+myQueue.enqueue(3);
+console.log(myQueue);
+myQueue.dequeue();
 myQueue.dequeue();
 console.log(myQueue);
