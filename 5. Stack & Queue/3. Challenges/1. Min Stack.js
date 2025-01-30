@@ -7,8 +7,7 @@ class Node {
 
 class Stack {
   constructor(value) {
-    const newNode = new Node(value);
-    this.first = newNode;
+    this.first = new Node(value);
     this.length = 1;
   }
 
@@ -17,12 +16,13 @@ class Stack {
 
     if (this.length === 0) {
       this.first = newNode;
-    } else {
-      newNode.next = this.first;
-      this.first = newNode;
-      this.length++;
+      this.length = 1;
+      return;
     }
-    return this;
+
+    newNode.next = this.first;
+    this.first = newNode;
+    this.length += 1;
   }
 
   pop() {
@@ -32,16 +32,10 @@ class Stack {
 
     let temp = this.first;
     this.first = this.first.next;
+
     temp.next = null;
     this.length--;
     return temp;
-  }
-
-  top() {
-    if (this.length === 0) {
-      return undefined;
-    }
-    return this.first;
   }
 
   min() {
@@ -49,23 +43,28 @@ class Stack {
       return undefined;
     }
 
-    let current = this.first;
-    let minValue = current.value;
+    if (this.length === 1) {
+      return this.first.value;
+    }
 
-    while (current.next) {
-      current = current.next;
-      if (current.value < minValue) {
-        console.log(current.value, minValue);
-        minValue = current.value;
+    let minValue = this.first.value;
+    let temp = this.first;
+
+    while (temp) {
+      if (temp.value < minValue) {
+        minValue = temp.value;
       }
+
+      temp = temp.next;
     }
 
     return minValue;
   }
 }
 
-let theStack = new Stack();
-theStack.push(1);
-theStack.push(2);
-theStack.push(3);
-console.log(theStack.min());
+const myStack = new Stack(1);
+myStack.push(2);
+myStack.push(-2);
+myStack.push(4);
+
+console.log(myStack.min());
