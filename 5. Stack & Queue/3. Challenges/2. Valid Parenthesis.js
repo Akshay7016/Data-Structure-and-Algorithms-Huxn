@@ -1,32 +1,31 @@
 const isValidParenthesis = (str) => {
-  // Use a stack to store opening brackets
-  const stack = [];
+  if (str.length === 0 || str.length % 2 === 1) {
+    return false;
+  }
 
-  // Map opening brackets to their closing counterparts
+  const stack = [];
   const brackets = {
-    "{": "}",
-    "[": "]",
-    "(": ")",
+    "}": "{",
+    "]": "[",
+    ")": "(",
   };
 
-  // Loop through each character in the string
-  for (let char of str) {
-    // If it's an opening bracket, push it to the stack
-    if (brackets[char]) {
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charAt(i);
+
+    if (!brackets[char]) {
       stack.push(char);
     } else {
-      // If it's a closing bracket, check if it matches the top of the stack
-      const top = stack.pop();
-      if (!top || brackets[top] !== char) {
+      if (brackets[char] !== stack.pop()) {
         return false;
       }
     }
   }
 
-  // After iterating, check if the stack is empty (all brackets were matched)
-  return stack.length === 0;
+  return true;
 };
 
+console.log(isValidParenthesis("")); // false
 console.log(isValidParenthesis("(){}[]")); // true
 console.log(isValidParenthesis("([)]")); // false
 console.log(isValidParenthesis("()")); // true
