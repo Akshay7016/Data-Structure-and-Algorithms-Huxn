@@ -1,22 +1,16 @@
 function reverseString(str) {
-  // Create an empty stack
   const stack = [];
+  let reversedString = "";
 
-  // Push each character of the string onto the stack
-  for (let char of str) {
-    stack.push(char);
+  for (let i = 0; i < str.length; i++) {
+    stack.push(str.charAt(i));
   }
 
-  // Initialize an empty string to store the reversed string
-  let reversedStr = "";
-
-  // Pop characters from the stack and build the reversed string
-  while (stack.length > 0) {
-    reversedStr += stack.pop();
+  while (stack.length) {
+    reversedString += stack.pop();
   }
 
-  // Return the reversed string
-  return reversedStr;
+  return reversedString;
 }
 
 const originalString = "hello world";
