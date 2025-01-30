@@ -5,18 +5,18 @@ const isValidParenthesis = (str) => {
 
   const stack = [];
   const brackets = {
-    "}": "{",
-    "]": "[",
-    ")": "(",
+    "{": "}",
+    "[": "]",
+    "(": ")",
   };
 
   for (let i = 0; i < str.length; i++) {
     const char = str.charAt(i);
 
-    if (!brackets[char]) {
-      stack.push(char);
+    if (brackets[char]) {
+      stack.push(brackets[char]);
     } else {
-      if (brackets[char] !== stack.pop()) {
+      if (char !== stack.pop()) {
         return false;
       }
     }
